@@ -1,0 +1,219 @@
+---
+import { site } from "../data/site";
+import Monogram from "./Monogram.astro";
+import Icon from "./Icon.astro";
+---
+
+<header class="masthead" id="masthead">
+  <div class="shell masthead__row">
+    <a href="#top" class="brand" aria-label={`${site.name} — home`}>
+      <Monogram size={34} withMark={false} class="brand__mark" />
+      <span class="brand__name">Lite Metal <span>Industries</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      {
+        site.nav.map((item) => (
+          <a href={item.href} class="nav__link">
+            <span class="nav__num mono">{item.num}</span>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="masthead__actions">
+      <a href={`tel:${site.phones[0].e164}`} class="masthead__tel mono">
+        <Icon name="phone" size={15} />
+        {site.phones[0].display}
+      </a>
+      <button
+        class="burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <Icon name="menu" size={22} />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile" id="mobile-menu" hidden>
+    <nav class="mobile__nav" aria-label="Mobile">
+      {
+        site.nav.map((item) => (
+          <a href={item.href} class="mobile__link">
+            <span class="mono">{item.num}</span>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a href={`tel:${site.phones[0].e164}`} class="mobile__tel mono">
+      {site.phones[0].display}
+    </a>
+  </div>
+</header>
+
+<style>
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background: var(--paper);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 4.4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  .brand__mark {
+    flex: none;
+  }
+  .brand__name {
+    font-family: var(--font-display);
+    font-size: 1.06rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .brand__name span {
+    color: var(--muted);
+  }
+
+  .nav {
+    display: none;
+    gap: 1.9rem;
+    margin-inline: auto;
+  }
+  .nav__link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding-block: 0.4rem;
+    border-bottom: 1.5px solid transparent;
+    transition: color var(--dur) var(--ease-std),
+      border-color var(--dur) var(--ease-std);
+  }
+  .nav__num {
+    font-size: 0.66rem;
+    color: var(--faint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav__link:hover {
+      color: var(--ink);
+      border-color: var(--accent);
+    }
+  }
+
+  .masthead__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .masthead__tel {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    transition: color var(--dur) var(--ease-std);
+  }
+  .masthead__tel :global(svg) {
+    color: var(--accent);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .masthead__tel:hover {
+      color: var(--accent-ink);
+    }
+  }
+
+  .burger {
+    display: inline-grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-sm);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: transform var(--dur-press) var(--ease-out);
+  }
+  .burger:active {
+    transform: scale(0.94);
+  }
+
+  .mobile {
+    border-top: 1px solid var(--hairline);
+    padding: 0.75rem var(--gutter) 1.5rem;
+  }
+  .mobile__nav {
+    display: grid;
+  }
+  .mobile__link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    padding: 0.85rem 0.2rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .mobile__link .mono {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-ink);
+  }
+  .mobile__tel {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.95rem;
+    color: var(--accent-ink);
+  }
+
+  @media (min-width: 920px) {
+    .nav {
+      display: flex;
+    }
+    .masthead__tel {
+      display: inline-flex;
+    }
+    .burger,
+    .mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>(".burger");
+  const menu = document.getElementById("mobile-menu");
+  if (burger && menu) {
+    const toggle = (open: boolean) => {
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      menu.hidden = !open;
+    };
+    burger.addEventListener("click", () =>
+      toggle(burger.getAttribute("aria-expanded") !== "true")
+    );
+    menu.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => toggle(false))
+    );
+  }
+</script>

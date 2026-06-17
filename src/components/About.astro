@@ -1,0 +1,224 @@
+---
+import { site } from "../data/site";
+import Icon from "./Icon.astro";
+
+const competencies = [
+  {
+    icon: "panel",
+    title: "LT panels & transformers",
+    text: "Capacitor, PLC, drive, lighting, fire and distribution panels, plus control and isolation transformers wound to order.",
+  },
+  {
+    icon: "wrench",
+    title: "Variegated fabrication",
+    text: "Sheet-metal enclosures, cable ducts and custom assemblies, cut, formed and finished to fit the job.",
+  },
+  {
+    icon: "bolt",
+    title: "Electrical trade supply",
+    text: "Stockists and traders of electrical items, so a panel order can ship with the gear that goes around it.",
+  },
+] as const;
+
+const stages = ["Design", "Manufacture", "Erect", "Commission"];
+---
+
+<section class="section" id="about">
+  <div class="shell">
+    <header class="section-head">
+      <span class="section-head__num">01</span>
+      <h2 class="section-head__title">About <em>us</em></h2>
+    </header>
+
+    <div class="about">
+      <div class="about__lead">
+        <p data-reveal>
+          Lite Metal Industries is a Kolkata panel shop with more than thirty
+          years on the floor. We design and build low-tension control panels
+          and control transformers, wire them to your scheme, and see them
+          through erection and commissioning on site.
+        </p>
+        <p data-reveal style="--reveal-delay:60ms">
+          The work runs from a single distribution board to the control
+          systems behind a city's musical fountains. Most of it leaves our
+          factory floors in Cossipore and a fabrication unit run as Kamakhya
+          Enterprise, with design and commercial handled from Marshall House.
+        </p>
+
+        <ul class="stages" data-reveal style="--reveal-delay:120ms" aria-label="What we handle">
+          {
+            stages.map((s, i) => (
+              <li class="stage">
+                <span class="stage__n mono">{String(i + 1).padStart(2, "0")}</span>
+                {s}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="about__aside">
+        <p class="eyebrow" data-reveal>Facilities</p>
+        <dl class="facilities" data-reveal-group>
+          {
+            site.facilities.map((f) => (
+              <div class="facility" data-reveal>
+                <dt>
+                  <span class="facility__area mono">{f.area}</span>
+                  <span class="facility__unit mono">{f.unit}</span>
+                </dt>
+                <dd>
+                  <span class="facility__name">{f.name}</span>
+                  <span class="facility__role">{f.role}</span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+
+    <ul class="competencies" data-reveal-group>
+      {
+        competencies.map((c) => (
+          <li class="comp" data-reveal>
+            <span class="comp__icon">
+              <Icon name={c.icon} size={22} />
+            </span>
+            <h3 class="comp__title">{c.title}</h3>
+            <p class="comp__text">{c.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 1rem + 5vw, 4.5rem);
+    margin-bottom: clamp(3rem, 2rem + 4vw, 5rem);
+  }
+  .about__lead p {
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 52ch;
+  }
+  .about__lead p + p {
+    margin-top: 1.25rem;
+  }
+
+  .stages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+  .stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .stage__n {
+    font-size: 0.66rem;
+    color: var(--accent-ink);
+  }
+
+  /* Facilities spec table — tabular figures, hairline rows, no boxed card */
+  .facilities {
+    margin-top: 1rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .facility {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .facility dt {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    min-width: 7.5rem;
+  }
+  .facility__area {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .facility__unit {
+    font-size: 0.72rem;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .facility dd {
+    display: flex;
+    flex-direction: column;
+  }
+  .facility__name {
+    font-weight: 540;
+  }
+  .facility__role {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* Competencies — three hairline-separated rows, not generic cards */
+  .competencies {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .comp {
+    display: grid;
+    gap: 0.6rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .comp__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-sm);
+    color: var(--accent-ink);
+  }
+  .comp__title {
+    font-size: var(--fs-h3);
+    font-weight: 440;
+  }
+  .comp__text {
+    color: var(--muted);
+    max-width: 42ch;
+  }
+
+  @media (min-width: 860px) {
+    .about {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: start;
+    }
+    .competencies {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .comp {
+      padding: 2rem 2rem 2rem 0;
+      border-bottom: none;
+      border-right: 1px solid var(--hairline);
+    }
+    .comp:first-child { padding-left: 0; }
+    .comp:last-child { border-right: none; padding-right: 0; }
+  }
+</style>

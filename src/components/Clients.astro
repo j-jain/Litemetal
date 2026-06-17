@@ -1,0 +1,99 @@
+---
+import { clientGroups, marqueeClients, clientCount } from "../data/clients";
+---
+
+<section class="section section--alt" id="clients">
+  <div class="shell">
+    <header class="section-head">
+      <span class="section-head__num">04</span>
+      <h2 class="section-head__title">Clients</h2>
+      <p class="section-head__note">
+        <span class="mono">{clientCount}+</span> organisations across utilities, industry and real estate.
+      </p>
+    </header>
+
+    <p class="wall" data-reveal>
+      {
+        marqueeClients.map((c, i) => (
+          <>
+            {i > 0 && <span class="wall__dot" aria-hidden="true">◆</span>}
+            <span class="wall__name">{c}</span>
+          </>
+        ))
+      }
+    </p>
+
+    <div class="groups" data-reveal-group>
+      {
+        clientGroups.map((g) => (
+          <div class="group" data-reveal>
+            <h3 class="group__sector eyebrow">{g.sector}</h3>
+            <ul class="group__list">
+              {g.clients.map((c) => <li class="client">{c}</li>)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .wall {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 0.9rem + 2.4vw, 2.9rem);
+    font-weight: 380;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: clamp(3rem, 2rem + 4vw, 5rem);
+    max-width: 22ch;
+  }
+  .wall__name {
+    white-space: nowrap;
+  }
+  .wall__dot {
+    color: var(--accent);
+    font-size: 0.5em;
+    vertical-align: middle;
+    margin-inline: 0.5em;
+  }
+
+  .groups {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 1rem + 3vw, 3rem);
+    border-top: 1px solid var(--hairline);
+    padding-top: clamp(2rem, 1rem + 3vw, 3rem);
+  }
+  .group__sector {
+    color: var(--accent-ink);
+    margin-bottom: 0.5rem;
+  }
+  .group__list {
+    display: grid;
+  }
+  .client {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 1.02rem;
+    font-weight: 460;
+    color: var(--ink-soft);
+    transition: color var(--dur) var(--ease-std), padding-left var(--dur) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .client:hover {
+      color: var(--accent-ink);
+      padding-left: 0.4rem;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .groups {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+      align-items: start;
+    }
+  }
+</style>

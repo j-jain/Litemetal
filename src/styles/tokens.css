@@ -1,0 +1,77 @@
+/* =========================================================================
+   Lite Metal Industries — design tokens
+   Engineering-grade editorial minimalism. Flat surfaces, no gradients,
+   one accent. Warm paper canvas + deep navy control-room blocks.
+   ========================================================================= */
+
+:root {
+  /* ---- Surfaces (all flat, never gradients) ---- */
+  --paper: #f6f4ef;        /* primary warm off-white canvas */
+  --paper-alt: #fbfbfa;    /* cards / alternating bands */
+  --paper-deep: #eee9df;   /* subtle inset wells */
+  --hairline: #e3ded4;     /* 1px dividers on paper */
+  --hairline-strong: #d4cec1;
+
+  /* ---- Ink (warm near-black, never pure #000) ---- */
+  --ink: #1a1813;
+  --ink-soft: #3a352d;
+  --muted: #6b6760;
+  --faint: #9a948a;
+
+  /* ---- Navy (deep flat control-room blocks) ---- */
+  --navy: #0d1a2b;
+  --navy-soft: #15263c;
+  --navy-line: rgba(233, 240, 247, 0.14);
+  --on-navy: #eef2f6;
+  --on-navy-muted: #9fb1c2;
+
+  /* ---- Single accent: desaturated electric teal (from the LMI monogram) ---- */
+  --accent: #1c87a4;
+  --accent-bright: #34a8c6;  /* on navy only */
+  --accent-ink: #0e5f74;     /* accent text on paper, for contrast */
+
+  /* ---- Type families (distinctive; never Inter/Roboto/Arial) ---- */
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- Fluid type scale ---- */
+  --fs-mono-label: 0.72rem;
+  --fs-eyebrow: 0.78rem;
+  --fs-body-sm: 0.94rem;
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+  --fs-lead: clamp(1.18rem, 1.05rem + 0.6vw, 1.45rem);
+  --fs-h3: clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
+  --fs-display: clamp(2.9rem, 1.3rem + 7vw, 6.6rem);
+
+  /* ---- Spacing & layout ---- */
+  --maxw: 1280px;
+  --maxw-text: 64ch;
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3.25rem);
+  --section-y: clamp(5rem, 3rem + 8vw, 9rem);
+
+  /* ---- Radius (vary: tighter inner, softer outer) ---- */
+  --r-xs: 3px;
+  --r-sm: 5px;
+  --r: 9px;
+  --r-lg: 14px;
+
+  /* ---- Motion (Emil Kowalski curves) ---- */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-press: 140ms;
+  --dur: 220ms;
+  --dur-reveal: 620ms;
+
+  /* ---- Elevation (tinted, restrained — no heavy drop shadows) ---- */
+  --shadow-card: 0 1px 2px rgba(26, 24, 19, 0.04), 0 8px 24px -16px rgba(26, 24, 19, 0.22);
+
+  /* ---- z-index scale (no arbitrary 9999) ---- */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-skip: 300;
+}

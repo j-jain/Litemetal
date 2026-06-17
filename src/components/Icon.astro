@@ -1,0 +1,54 @@
+---
+// Custom industrial line-icon set (consistent 1.6 stroke, square joins).
+// Deliberately not Lucide/Feather — avoids the default-AI icon look.
+export interface Props {
+  name:
+    | "arrow-right"
+    | "arrow-up-right"
+    | "phone"
+    | "mail"
+    | "pin"
+    | "check"
+    | "bolt"
+    | "panel"
+    | "wrench"
+    | "menu"
+    | "close"
+    | "clock";
+  size?: number;
+  class?: string;
+}
+const { name, size = 20, class: cls = "" } = Astro.props;
+
+const paths: Record<string, string> = {
+  "arrow-right": '<path d="M4 12h15M13 6l6 6-6 6"/>',
+  "arrow-up-right": '<path d="M7 17 17 7M8 7h9v9"/>',
+  phone:
+    '<path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5 5L21 15v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/>',
+  pin: '<path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.6"/>',
+  check: '<path d="m4 12 5 5 11-12"/>',
+  bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
+  panel:
+    '<rect x="4" y="3" width="16" height="18"/><path d="M14 3v18M7 7h3M7 10h3M7 13h3M17 7v3"/>',
+  wrench:
+    '<path d="M21 4a5 5 0 0 1-6.5 6.5L5 20l-1-1 9.5-9.5A5 5 0 0 1 20 3l-2.5 2.5 1.5 1.5L21.5 4.5Z"/>',
+  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+  close: '<path d="M5 5l14 14M19 5 5 19"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+};
+---
+
+<svg
+  class={cls}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+  set:html={paths[name]}
+/>

@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Products from "../components/Products.astro";
+import Projects from "../components/Projects.astro";
+import Clients from "../components/Clients.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+import { products } from "../data/products";
+
+// Service catalogue + website schema for richer search results.
+const offerLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Products & services",
+  itemListElement: products.map((p) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: p.name,
+      category: p.category,
+      description: p.blurb,
+      provider: { "@id": `${Astro.site}#organization` },
+    },
+  })),
+};
+
+const siteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: Astro.site?.href,
+  publisher: { "@id": `${Astro.site}#organization` },
+};
+---
+
+<Base
+  title={site.metaTitle}
+  description={site.metaDescription}
+  path="/"
+  jsonLd={[offerLd, siteLd]}
+>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <About />
+    <Products />
+    <Projects />
+    <Clients />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

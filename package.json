@@ -1,0 +1,26 @@
+{
+  "name": "litemetal-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lite Metal Industries — corporate website",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "assets": "node scripts/process-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.6.1"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.1.1",
+    "@fontsource-variable/geist": "^5.1.1",
+    "@fontsource-variable/geist-mono": "^5.1.1",
+    "puppeteer-core": "^23.11.1",
+    "sharp": "^0.33.5"
+  }
+}

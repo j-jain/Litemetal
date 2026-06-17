@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.litemetalindustries.com/sitemap-index.xml
