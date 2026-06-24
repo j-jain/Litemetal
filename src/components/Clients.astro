@@ -1,5 +1,5 @@
 ---
-import { clientGroups, marqueeClients, clientCount } from "../data/clients";
+import { clientGroups, clientCount } from "../data/clients";
 ---
 
 <section class="section section--alt" id="clients">
@@ -11,17 +11,6 @@ import { clientGroups, marqueeClients, clientCount } from "../data/clients";
         <span class="mono">{clientCount}+</span> organisations across utilities, industry and real estate.
       </p>
     </header>
-
-    <p class="wall" data-reveal>
-      {
-        marqueeClients.map((c, i) => (
-          <>
-            {i > 0 && <span class="wall__dot" aria-hidden="true">◆</span>}
-            <span class="wall__name">{c}</span>
-          </>
-        ))
-      }
-    </p>
 
     <div class="groups" data-reveal-group>
       {
@@ -39,27 +28,6 @@ import { clientGroups, marqueeClients, clientCount } from "../data/clients";
 </section>
 
 <style>
-  .wall {
-    font-family: var(--font-display);
-    font-size: clamp(1.35rem, 0.9rem + 2.4vw, 2.9rem);
-    font-weight: 380;
-    line-height: 1.22;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    text-wrap: balance;
-    margin-bottom: clamp(3rem, 2rem + 4vw, 5rem);
-    max-width: 22ch;
-  }
-  .wall__name {
-    white-space: nowrap;
-  }
-  .wall__dot {
-    color: var(--accent);
-    font-size: 0.5em;
-    vertical-align: middle;
-    margin-inline: 0.5em;
-  }
-
   .groups {
     display: grid;
     grid-template-columns: minmax(0, 1fr);

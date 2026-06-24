@@ -50,16 +50,4 @@ export const clientGroups: ClientGroup[] = [
   },
 ];
 
-// A few names pulled out for emphasis at the top of the section.
-export const marqueeClients = [
-  "CESC Limited",
-  "Government of West Bengal",
-  "Birla Sugar",
-  "PS Group",
-  "Srijan",
-  "Beekay Steel",
-  "Jain Group",
-  "WBHIDCO",
-];
-
 export const clientCount = clientGroups.reduce((n, g) => n + g.clients.length, 0);

@@ -10,11 +10,11 @@ export const site = {
   tagline:
     "Design, manufacture, erection and commissioning of low-tension control panels and control transformers.",
   metaTitle:
-    "Lite Metal Industries — LT control panels & control transformers, Kolkata",
+    "Lite Metal Industries · LT control panels & control transformers, Kolkata",
   metaDescription:
-    "Lite Metal Industries designs, builds and commissions LT control panels and control transformers in Kolkata. ISO 9001:2015 certified, with more than 30 years of fabrication work delivered across India.",
+    "Lite Metal Industries designs, builds and commissions LT control panels and control transformers in Kolkata. ISO 9001:2015 certified, with more than 40 years of fabrication work delivered across India.",
 
-  yearsExperience: 30,
+  yearsExperience: 40,
   certification: "ISO 9001:2015",
   msme: true,
 
@@ -23,9 +23,8 @@ export const site = {
 
   phones: [
     { display: "+91 98305 49999", e164: "+919830549999" },
-    { display: "+91 62919 27843", e164: "+916291927843" },
   ],
-  landline: { display: "033 2230 1954", e164: "+913322301954" },
+  landline: { display: "+91 62919 27843", e164: "+916291927843" },
 
   office: {
     label: "Office",
@@ -45,11 +44,10 @@ export const site = {
   // Manufacturing footprint mentioned in the portfolio.
   facilities: [
     { area: "3,000", unit: "sq ft", name: "Cossipore works", role: "Panel build & wiring" },
-    { area: "4,000", unit: "sq ft", name: "Kamakhya Enterprise", role: "Heavy fabrication" },
     { area: "2", unit: "offices", name: "Marshall House", role: "Design & commercial" },
   ],
 
-  statesServed: ["West Bengal", "Gujarat", "Tamil Nadu", "Maharashtra", "Bihar"],
+  statesServed: ["West Bengal", "Gujarat", "Tamil Nadu", "Maharashtra", "Bihar", "Rajasthan"],
 
   // Flat product-name list for structured data (knowsAbout).
   products: [
@@ -67,9 +65,9 @@ export const site = {
 
   // Hero / about counters. Mono, tabular figures.
   stats: [
-    { value: "30+", label: "Years in build" },
+    { value: "40+", label: "Years in build" },
     { value: "10", label: "Product lines" },
-    { value: "5", label: "States served" },
+    { value: "6", label: "States served" },
     { value: "ISO", label: "9001:2015 certified" },
   ],
 

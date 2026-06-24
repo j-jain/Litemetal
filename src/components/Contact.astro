@@ -255,6 +255,10 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.office.m
   .field-row {
     display: grid;
     gap: 1.1rem;
+    /* Don't stretch the optional-phone field to the email field's height
+       (email is taller because of its error row) — keep inputs top-aligned
+       and at their natural height. */
+    align-items: start;
   }
   .field label {
     font-size: 0.82rem;

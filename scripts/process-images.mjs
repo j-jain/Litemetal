@@ -35,9 +35,11 @@ for (const p of products) {
     .trim({ threshold: 12 })
     // Unify the old scans: pull back colour casts, lift a touch, gentle sharpen.
     .modulate({ saturation: 0.86, brightness: 1.04 })
-    .resize(820, 820, { fit: "inside", withoutEnlargement: false })
+    // Source scans are low-res (~300–600px); don't upscale (pointless bytes,
+    // no real detail). Cap at native size and lean on quality + gentle sharpen.
+    .resize(900, 900, { fit: "inside", withoutEnlargement: true })
     .sharpen({ sigma: 0.6 })
-    .webp({ quality: 86, alphaQuality: 100 })
+    .webp({ quality: 92, alphaQuality: 100 })
     .toFile(join(OUT, "products", `${p.slug}.webp`));
   console.log("product:", p.slug);
 }
@@ -46,17 +48,17 @@ for (const p of products) {
    2. Project photos — the marquee fountain work + panel installs.
 --------------------------------------------------------------------------- */
 const projects = [
-  { name: "fountain-of-joy", src: "proj-001.png", w: 1400 },
+  { name: "fountain-of-joy", src: "proj-001.png", w: 1800 },
   { name: "biswa-bangla", src: "proj-002.png", w: 1400 },
   { name: "eco-park", src: "proj-003.png", w: 1400 },
   { name: "krishna-river", src: "proj-010.png", w: 1200 },
-  { name: "vfd-mumbai", src: "proj-020.png", w: 1000 },
+  { name: "vfd-mumbai", src: "proj-020.png", w: 1200 },
 ];
 
 for (const p of projects) {
   await sharp(join(SRC, p.src))
     .resize({ width: p.w, withoutEnlargement: true })
-    .webp({ quality: 80 })
+    .webp({ quality: 90 })
     .toFile(join(OUT, "projects", `${p.name}.webp`));
   console.log("project:", p.name);
 }
@@ -107,7 +109,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <rect x="92" y="156" width="40" height="3" fill="${ACCENT}"/>
   <text x="80" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="92" fill="${PAPER}">Lite Metal Industries</text>
   <text x="83" y="392" font-family="Georgia, serif" font-size="34" font-style="italic" fill="#9fb1c2">LT control panels &amp; control transformers</text>
-  <text x="80" y="556" font-family="monospace" font-size="22" letter-spacing="3" fill="#9fb1c2">KOLKATA  ·  ISO 9001:2015  ·  30+ YEARS</text>
+  <text x="80" y="556" font-family="monospace" font-size="22" letter-spacing="3" fill="#9fb1c2">KOLKATA  ·  ISO 9001:2015  ·  40+ YEARS</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile("public/og.png");
 console.log("og.png");
