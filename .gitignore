@@ -26,3 +26,4 @@ Thumbs.db
 # video render scratch
 video/_frames/
 video/_verify.png
+.firecrawl/

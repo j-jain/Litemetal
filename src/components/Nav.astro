@@ -1,13 +1,19 @@
 ---
 import { site } from "../data/site";
-import Monogram from "./Monogram.astro";
 import Icon from "./Icon.astro";
 ---
 
 <header class="masthead" id="masthead">
   <div class="shell masthead__row">
     <a href="#top" class="brand" aria-label={`${site.name}, home`}>
-      <Monogram size={34} withMark={false} class="brand__mark" />
+      <img
+        class="brand__mark"
+        src="/images/logo.png"
+        alt="Lite Metal Industries"
+        width="40"
+        height="35"
+        decoding="async"
+      />
       <span class="brand__name">Lite Metal <span>Industries</span></span>
     </a>
 
@@ -79,6 +85,9 @@ import Icon from "./Icon.astro";
   }
   .brand__mark {
     flex: none;
+    height: 2.1rem;
+    width: auto;
+    display: block;
   }
   .brand__name {
     font-family: var(--font-display);

@@ -91,5 +91,6 @@ export const products: Product[] = [
     category: "Fabrication",
     blurb:
       "Sheet-metal cable ducts and trunking, fabricated and mounted on site to route and protect cabling between equipment.",
+    image: "/images/products/cable-duct-fabrication.webp",
   },
 ];
