@@ -380,20 +380,29 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.office.m
         return;
       }
 
-      // No-backend default: hand off to the visitor's mail client.
-      const subject = `Enquiry from ${val("cf-name")}`;
-      const body = [
-        `Name: ${val("cf-name")}`,
-        `Organisation: ${val("cf-org") || "-"}`,
-        `Email: ${val("cf-email")}`,
-        `Phone: ${val("cf-phone") || "-"}`,
-        "",
-        val("cf-msg"),
-      ].join("\n");
-      status.textContent = "Opening your email app with the details filled in…";
-      window.location.href = `mailto:vishaldalmia@ymail.com?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
+      const btn = form.querySelector<HTMLButtonElement>(".form__submit")!;
+      btn.disabled = true;
+      status.textContent = "Sending…";
+
+      try {
+        const res = await fetch("https://formspree.io/f/mdardlan", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          status.textContent = "Enquiry sent — we'll be in touch shortly.";
+          form.reset();
+        } else {
+          const msg = data?.errors?.map((e: { message: string }) => e.message).join(", ") || "Something went wrong.";
+          status.textContent = msg;
+          btn.disabled = false;
+        }
+      } catch {
+        status.textContent = "Network error — please try again or email us directly.";
+        btn.disabled = false;
+      }
     });
   }
 </script>
