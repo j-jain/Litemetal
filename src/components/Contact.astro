@@ -362,7 +362,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.office.m
     const val = (id: string) =>
       (document.getElementById(id) as HTMLInputElement).value.trim();
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       // honeypot
       if ((form.querySelector<HTMLInputElement>(".hp")?.value || "") !== "") return;
