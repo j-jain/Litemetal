@@ -10,11 +10,20 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "assets": "node scripts/process-images.mjs"
+    "assets": "node scripts/process-images.mjs",
+    "seed": "node scripts/seed-sanity.mjs"
   },
   "dependencies": {
+    "@astrojs/react": "^6.0.0",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.6.1"
+    "@sanity/astro": "^3.4.1",
+    "@sanity/client": "^7.23.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.3.0",
+    "astro": "^5.6.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sanity": "^6.3.0"
   },
   "devDependencies": {
     "@fontsource-variable/fraunces": "^5.1.1",
